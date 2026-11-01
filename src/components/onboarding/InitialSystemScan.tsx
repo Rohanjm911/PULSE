@@ -195,11 +195,17 @@ export const InitialSystemScan: React.FC<InitialSystemScanProps> = ({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.99 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-6 select-none overflow-y-auto"
     >
-      <div className="max-w-3xl w-full bg-[#121720] border border-[#293342] rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 15 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 15 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-3xl w-full bg-[#121720] border border-[#293342] rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden"
+      >
         {/* Ambient Top Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-24 bg-gradient-to-b from-[#00D4FF]/10 to-transparent pointer-events-none filter blur-2xl" />
 
@@ -343,7 +349,7 @@ export const InitialSystemScan: React.FC<InitialSystemScanProps> = ({
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

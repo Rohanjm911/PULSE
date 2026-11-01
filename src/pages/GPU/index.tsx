@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   MonitorDot,
   Thermometer,
@@ -50,13 +51,22 @@ export const GpuPage: React.FC = () => {
             <button
               key={idx}
               onClick={() => setSelectedGpuIndex(idx)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-mono font-medium border transition-colors ${
+              className={`relative px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors cursor-pointer ${
                 selectedGpuIndex === idx
-                  ? "bg-[#202936] border-[#00D4FF] text-[#00D4FF] shadow-xs"
-                  : "bg-[#181F29] border-[#293342] text-[#9AA5B3] hover:text-[#F4F6F8]"
+                  ? "text-[#00D4FF]"
+                  : "text-[#9AA5B3] hover:text-[#F4F6F8] bg-[#181F29]/60 border border-[#293342]"
               }`}
             >
-              {g.name} ({g.vendor})
+              {selectedGpuIndex === idx && (
+                <motion.div
+                  layoutId="gpu-selector-tab"
+                  transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  className="absolute inset-0 bg-[#202936] border border-[#00D4FF] rounded-lg shadow-xs"
+                />
+              )}
+              <span className="relative z-10">
+                {g.name} ({g.vendor})
+              </span>
             </button>
           ))}
         </div>

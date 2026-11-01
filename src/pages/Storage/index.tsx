@@ -84,7 +84,7 @@ export const StoragePage: React.FC = () => {
                 </div>
                 <div className="w-full bg-[#121720] rounded-full h-2 overflow-hidden">
                   <div
-                    className={`h-2 rounded-full transition-all duration-300 ${
+                    className={`h-2 rounded-full transition-all duration-500 ease-out ${
                       isLowSpace
                         ? "bg-[#FF5252]"
                         : d.usagePercent > 75

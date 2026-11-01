@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Bell,
   Settings as SettingsIcon,
@@ -186,77 +187,85 @@ export const Header: React.FC = () => {
           </button>
 
           {/* Alerts Mini Drawer / Popover */}
-          {showAlertsPopover && (
-            <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-xl bg-[#181F29] border border-[#293342] shadow-2xl p-4 z-50 animate-in fade-in zoom-in-95">
-              <div className="flex items-center justify-between pb-3 border-b border-[#293342]">
-                <div className="flex items-center gap-2">
-                  <ShieldAlert className="w-4 h-4 text-[#FFB547]" />
-                  <span className="text-xs font-bold text-[#F4F6F8]">
-                    System Alerts & Logs
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => {
-                      setShowAlertsPopover(false);
-                      setActiveTab("alerts");
-                    }}
-                    className="text-[11px] text-[#00D4FF] hover:underline flex items-center gap-1"
-                  >
-                    View All <ExternalLink className="w-3 h-3" />
-                  </button>
-                  <button
-                    onClick={() => setShowAlertsPopover(false)}
-                    className="text-[#9AA5B3] hover:text-[#F4F6F8] p-0.5 rounded hover:bg-[#202936]"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="max-h-64 overflow-y-auto divide-y divide-[#293342] my-2">
-                {alerts.length === 0 ? (
-                  <div className="py-6 text-center text-xs text-[#687585]">
-                    No system alerts recorded. Everything is operating normally.
+          <AnimatePresence>
+            {showAlertsPopover && (
+              <motion.div
+                initial={{ opacity: 0, y: -8, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute right-0 mt-2 w-80 sm:w-96 rounded-xl bg-[#181F29] border border-[#293342] shadow-2xl p-4 z-50 select-none"
+              >
+                <div className="flex items-center justify-between pb-3 border-b border-[#293342]">
+                  <div className="flex items-center gap-2">
+                    <ShieldAlert className="w-4 h-4 text-[#FFB547]" />
+                    <span className="text-xs font-bold text-[#F4F6F8]">
+                      System Alerts & Logs
+                    </span>
                   </div>
-                ) : (
-                  alerts.slice(0, 5).map((alert) => (
-                    <div
-                      key={alert.id}
-                      className="py-2.5 flex items-start justify-between gap-2 text-xs"
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => {
+                        setShowAlertsPopover(false);
+                        setActiveTab("alerts");
+                      }}
+                      className="text-[11px] text-[#00D4FF] hover:underline flex items-center gap-1 cursor-pointer"
                     >
-                      <div className="space-y-0.5">
-                        <div className="flex items-center gap-1.5">
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full ${
-                              alert.severity === "critical"
-                                ? "bg-[#FF5252]"
-                                : "bg-[#FFB547]"
-                            }`}
-                          />
-                          <span className="font-semibold text-[#F4F6F8]">
-                            {alert.title}
-                          </span>
-                        </div>
-                        <p className="text-[11px] text-[#9AA5B3] pl-3">
-                          {alert.message}
-                        </p>
-                      </div>
-                      {!alert.acknowledged && (
-                        <button
-                          onClick={() => acknowledgeAlert(alert.id)}
-                          className="shrink-0 p-1 text-[#687585] hover:text-[#35D07F]"
-                          title="Acknowledge alert"
-                        >
-                          <CheckCircle className="w-3.5 h-3.5" />
-                        </button>
-                      )}
+                      View All <ExternalLink className="w-3 h-3" />
+                    </button>
+                    <button
+                      onClick={() => setShowAlertsPopover(false)}
+                      className="text-[#9AA5B3] hover:text-[#F4F6F8] p-0.5 rounded hover:bg-[#202936] cursor-pointer"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="max-h-64 overflow-y-auto divide-y divide-[#293342] my-2">
+                  {alerts.length === 0 ? (
+                    <div className="py-6 text-center text-xs text-[#687585]">
+                      No system alerts recorded. Everything is operating normally.
                     </div>
-                  ))
-                )}
-              </div>
-            </div>
-          )}
+                  ) : (
+                    alerts.slice(0, 5).map((alert) => (
+                      <div
+                        key={alert.id}
+                        className="py-2.5 flex items-start justify-between gap-2 text-xs"
+                      >
+                        <div className="space-y-0.5">
+                          <div className="flex items-center gap-1.5">
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                alert.severity === "critical"
+                                  ? "bg-[#FF5252]"
+                                  : "bg-[#FFB547]"
+                              }`}
+                            />
+                            <span className="font-semibold text-[#F4F6F8]">
+                              {alert.title}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-[#9AA5B3] pl-3">
+                            {alert.message}
+                          </p>
+                        </div>
+                        {!alert.acknowledged && (
+                          <button
+                            onClick={() => acknowledgeAlert(alert.id)}
+                            className="shrink-0 p-1 text-[#687585] hover:text-[#35D07F] cursor-pointer"
+                            title="Acknowledge alert"
+                          >
+                            <CheckCircle className="w-3.5 h-3.5" />
+                          </button>
+                        )}
+                      </div>
+                    ))
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Settings Shortcut */}

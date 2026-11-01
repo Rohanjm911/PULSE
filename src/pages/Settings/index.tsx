@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Settings as SettingsIcon,
   Palette,
@@ -76,21 +77,43 @@ export const SettingsPage: React.FC = () => {
             <button
               key={item.id}
               onClick={() => setActiveSettingsTab(item.id)}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-mono font-medium transition-all shrink-0 ${
+              className={`relative flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-mono font-medium transition-colors shrink-0 cursor-pointer ${
                 isActive
-                  ? "bg-[#181F29] border border-[#293342] text-[#00D4FF] shadow-xs"
+                  ? "text-[#00D4FF]"
                   : "text-[#9AA5B3] hover:text-[#F4F6F8] hover:bg-[#181F29]/60"
               }`}
             >
-              <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#00D4FF]" : "text-[#687585]"}`} />
-              <span>{item.label}</span>
+              {isActive && (
+                <motion.div
+                  layoutId="settings-nav-tab"
+                  transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  className="absolute inset-0 bg-[#181F29] border border-[#293342] rounded-lg shadow-xs"
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <Icon
+                  className={`w-3.5 h-3.5 ${
+                    isActive ? "text-[#00D4FF]" : "text-[#687585]"
+                  }`}
+                />
+                <span>{item.label}</span>
+              </span>
             </button>
           );
         })}
       </div>
 
-      {/* TAB 1: GENERAL */}
-      {activeSettingsTab === "general" && (
+      {/* Settings Tab Content Container with Smooth Transitions */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeSettingsTab}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {/* TAB 1: GENERAL */}
+          {activeSettingsTab === "general" && (
         <div className="space-y-4">
           <Card
             title="General Desktop Preferences"
@@ -524,6 +547,8 @@ export const SettingsPage: React.FC = () => {
           </Card>
         </div>
       )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

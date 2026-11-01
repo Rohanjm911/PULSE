@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   ListTree,
   Search,
@@ -131,43 +132,71 @@ export const ProcessesPage: React.FC = () => {
           <div className="flex items-center p-0.5 rounded-lg bg-[#121720] border border-[#293342] text-xs">
             <button
               onClick={() => setFilterType("all")}
-              className={`px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors ${
+              className={`relative px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors cursor-pointer ${
                 filterType === "all"
-                  ? "bg-[#202936] text-[#00D4FF] shadow-xs"
+                  ? "text-[#00D4FF]"
                   : "text-[#9AA5B3] hover:text-[#F4F6F8]"
               }`}
             >
-              All ({processes.length})
+              {filterType === "all" && (
+                <motion.div
+                  layoutId="processes-filter-tab"
+                  transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  className="absolute inset-0 bg-[#202936] rounded-md border border-[#293342] shadow-xs"
+                />
+              )}
+              <span className="relative z-10">All ({processes.length})</span>
             </button>
             <button
               onClick={() => setFilterType("apps")}
-              className={`px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors ${
+              className={`relative px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors cursor-pointer ${
                 filterType === "apps"
-                  ? "bg-[#202936] text-[#00D4FF] shadow-xs"
+                  ? "text-[#00D4FF]"
                   : "text-[#9AA5B3] hover:text-[#F4F6F8]"
               }`}
             >
-              Apps
+              {filterType === "apps" && (
+                <motion.div
+                  layoutId="processes-filter-tab"
+                  transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  className="absolute inset-0 bg-[#202936] rounded-md border border-[#293342] shadow-xs"
+                />
+              )}
+              <span className="relative z-10">Apps</span>
             </button>
             <button
               onClick={() => setFilterType("system")}
-              className={`px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors ${
+              className={`relative px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors cursor-pointer ${
                 filterType === "system"
-                  ? "bg-[#202936] text-[#00D4FF] shadow-xs"
+                  ? "text-[#00D4FF]"
                   : "text-[#9AA5B3] hover:text-[#F4F6F8]"
               }`}
             >
-              System
+              {filterType === "system" && (
+                <motion.div
+                  layoutId="processes-filter-tab"
+                  transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  className="absolute inset-0 bg-[#202936] rounded-md border border-[#293342] shadow-xs"
+                />
+              )}
+              <span className="relative z-10">System</span>
             </button>
             <button
               onClick={() => setFilterType("heavy")}
-              className={`px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors ${
+              className={`relative px-3 py-1 rounded-md font-mono text-[11px] font-semibold transition-colors cursor-pointer ${
                 filterType === "heavy"
-                  ? "bg-[#202936] text-[#FFB547] shadow-xs"
+                  ? "text-[#FFB547]"
                   : "text-[#9AA5B3] hover:text-[#F4F6F8]"
               }`}
             >
-              Heavy
+              {filterType === "heavy" && (
+                <motion.div
+                  layoutId="processes-filter-tab"
+                  transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  className="absolute inset-0 bg-[#202936] rounded-md border border-[#293342] shadow-xs"
+                />
+              )}
+              <span className="relative z-10">Heavy</span>
             </button>
           </div>
 

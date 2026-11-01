@@ -68,7 +68,11 @@ export const SparklineChart: React.FC<SparklineChartProps> = ({
         </defs>
 
         {/* Fill Area */}
-        <path d={fillD} fill={`url(#${gradientId})`} />
+        <path
+          d={fillD}
+          fill={`url(#${gradientId})`}
+          className="transition-all duration-300 ease-out"
+        />
 
         {/* Line */}
         <path
@@ -78,6 +82,7 @@ export const SparklineChart: React.FC<SparklineChartProps> = ({
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
+          className="transition-all duration-300 ease-out"
         />
 
         {/* Last Point Pulse Dot */}
@@ -88,6 +93,7 @@ export const SparklineChart: React.FC<SparklineChartProps> = ({
           fill={color}
           stroke="#0D1015"
           strokeWidth="1"
+          className="transition-all duration-300 ease-out"
         />
       </svg>
     </div>

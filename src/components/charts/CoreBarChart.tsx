@@ -84,7 +84,11 @@ export const CoreBarChart: React.FC<CoreBarChartProps> = ({
           data: usages,
         },
       ],
-      animationDuration: 250,
+      animation: true,
+      animationDuration: 400,
+      animationEasing: "cubicOut",
+      animationDurationUpdate: 400,
+      animationEasingUpdate: "cubicOut",
     };
   }, [cores]);
 

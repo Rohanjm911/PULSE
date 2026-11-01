@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Cpu,
   Activity,
@@ -484,13 +485,24 @@ export const OverviewPage: React.FC = () => {
                   <button
                     key={tab}
                     onClick={() => setSelectedMetric(tab)}
-                    className={`px-2.5 py-1 rounded-md uppercase font-mono font-semibold transition-colors ${
+                    className={`relative px-2.5 py-1 rounded-md uppercase font-mono font-semibold transition-colors cursor-pointer ${
                       selectedMetric === tab
-                        ? "bg-[#202936] text-[#00D4FF] shadow-xs"
+                        ? "text-[#00D4FF]"
                         : "text-[#9AA5B3] hover:text-[#F4F6F8]"
                     }`}
                   >
-                    {tab}
+                    {selectedMetric === tab && (
+                      <motion.div
+                        layoutId="overview-metric-tab"
+                        transition={{
+                          type: "spring",
+                          stiffness: 450,
+                          damping: 35,
+                        }}
+                        className="absolute inset-0 bg-[#202936] rounded-md border border-[#293342] shadow-xs"
+                      />
+                    )}
+                    <span className="relative z-10">{tab}</span>
                   </button>
                 )
               )}
@@ -502,13 +514,24 @@ export const OverviewPage: React.FC = () => {
                 <button
                   key={range}
                   onClick={() => setSelectedRange(range)}
-                  className={`px-2 py-1 rounded-md font-mono text-[11px] transition-colors ${
+                  className={`relative px-2 py-1 rounded-md font-mono text-[11px] transition-colors cursor-pointer ${
                     selectedRange === range
-                      ? "bg-[#202936] text-[#F4F6F8] font-bold"
+                      ? "text-[#F4F6F8] font-bold"
                       : "text-[#687585] hover:text-[#9AA5B3]"
                   }`}
                 >
-                  {range}
+                  {selectedRange === range && (
+                    <motion.div
+                      layoutId="overview-range-tab"
+                      transition={{
+                        type: "spring",
+                        stiffness: 450,
+                        damping: 35,
+                      }}
+                      className="absolute inset-0 bg-[#202936] rounded-md border border-[#293342]"
+                    />
+                  )}
+                  <span className="relative z-10">{range}</span>
                 </button>
               ))}
             </div>

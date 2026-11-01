@@ -166,7 +166,11 @@ export const LiveAreaChart: React.FC<LiveAreaChartProps> = ({
           data: s.data,
         };
       }),
-      animationDuration: 250,
+      animation: true,
+      animationDuration: 400,
+      animationEasing: "cubicOut",
+      animationDurationUpdate: 400,
+      animationEasingUpdate: "linear",
     };
   }, [resolvedTimes, resolvedSeries, height, max, showLegend, unit]);
 

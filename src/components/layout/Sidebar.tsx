@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Activity,
   Cpu,
@@ -71,7 +72,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     <aside
-      className={`h-screen bg-[#11151C] border-r border-[#293342] flex flex-col justify-between transition-all duration-250 z-30 select-none ${
+      className={`h-screen bg-[#11151C] border-r border-[#293342] flex flex-col justify-between transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-30 select-none ${
         collapsed ? "w-[72px]" : "w-64"
       }`}
     >
@@ -135,12 +136,20 @@ export const Sidebar: React.FC = () => {
                     className={`w-full group flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-all relative ${
                       isActive
                         ? "bg-[#181F29] text-[#F4F6F8] border border-[#293342] shadow-xs"
-                        : "text-[#9AA5B3] hover:text-[#F4F6F8] hover:bg-[#181F29]/60"
+                        : "text-[#9AA5B3] hover:text-[#F4F6F8] hover:bg-[#181F29]/60 hover:translate-x-0.5"
                     }`}
                   >
                     {/* Active Accent Indicator */}
                     {isActive && (
-                      <span className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-[#00D4FF] shadow-[0_0_8px_#00D4FF]" />
+                      <motion.span
+                        layoutId="active-sidebar-pill"
+                        transition={{
+                          type: "spring",
+                          stiffness: 450,
+                          damping: 35,
+                        }}
+                        className="absolute left-0 top-1.5 bottom-1.5 w-1 rounded-r-full bg-[#00D4FF] shadow-[0_0_8px_#00D4FF]"
+                      />
                     )}
 
                     <Icon
