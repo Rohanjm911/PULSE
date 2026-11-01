@@ -80,6 +80,73 @@ PULSE features a technical, high-contrast dark visual identity built for clarity
 
 ---
 
+## 🖥️ User Interface & Dashboard Showcase
+
+### 1. Dedicated GPU Graphics & Live Telemetry Center
+
+PULSE directly interrogates native hardware drivers to deliver instant, zero-mock performance analytics:
+
+<p align="center">
+  <img src="docs/screenshots/gpu_dashboard.png" alt="PULSE GPU Graphics & Hardware Telemetry Dashboard" width="100%" />
+</p>
+
+#### Functional UI Breakdown:
+
+| Visual Element | Interface Location | Live Telemetry & Architectural Function |
+| :--- | :--- | :--- |
+| **Technical Sidebar** | Left Column | Categorized navigation into *Telemetry*, *System Management*, and *Modes & Analytics* with active indicator and glowing icon states. |
+| **Top Status Ribbon** | Header Bar | Real-time system uptime (`14h 2m`), System Health Index (`55%`), total process count (`329`), and quick Floating HUD toggle. |
+| **Engine Hero Banner** | Top Main Card | Displays hardware vendor identification (`NVIDIA`), installed display driver version, device designation, and live core load. |
+| **VRAM Buffer Card** | Metrics Row (1/4) | Tracks active dedicated video memory allocation against total physical GDDR6 boundary (`8.58 GB`). |
+| **GPU Thermal Card** | Metrics Row (2/4) | Direct on-die silicon thermal sensor reading with dynamic safety margin indicators. |
+| **Clock Frequency Card** | Metrics Row (3/4) | Real-time Core Clock & Memory Clock frequencies in MHz alongside dynamic D3D state monitoring. |
+| **Power & Fan Profile** | Metrics Row (4/4) | Live Wattage draw, active cooling profile, and hardware acceleration status. |
+| **Engine Workload Area** | Center Chart | High-frequency continuous workload sampling from DirectX / WDDM kernel adapter with area gradients. |
+| **Memory Allocation Bar**| Bottom Left | Visual frame-buffer bar showing active allocated video memory against physical capacity. |
+
+---
+
+### 2. High-Tech Animated Startup Engine
+
+The application boots through a cinematic, distraction-free startup sequence:
+
+<p align="center">
+  <img src="docs/screenshots/splash_screen.jpg" alt="PULSE High-Tech Animated Startup Splash Screen" width="85%" />
+</p>
+
+#### Startup Engineering & Design Principles:
+- **100% Solid Pure Black (`#000000`)**: The animated core logo blends seamlessly on pure black with zero box artifacts or visible rectangular borders.
+- **Dynamic Boot Status Engine**: Visually reports live kernel initialization stages:
+  1. `INITIALIZING SYSTEM KERNEL PROBES...`
+  2. `CONNECTING NVIDIA & CPU TELEMETRY...`
+  3. `CALIBRATING HARDWARE SENSORS...`
+  4. `SYSTEM READY — ALL CORES ONLINE`
+- **Smart 2.0-Second Auto-Skip**: The timer smoothly advances to 100% and automatically triggers the dashboard entrance without manual intervention.
+- **Instant Skip Accessibility**: Pressing `[ESC]`, `[Enter]`, `Space`, or simply clicking anywhere on screen instantly dismisses the splash sequence.
+- **Cinematic Parallel Cross-Dissolve**: When boot completes, the splash screen smoothly dissolves out via a **0.7s cubic-bezier curve (`[0.16, 1, 0.3, 1]`)** while the main application dashboard blooms into view with zero dropped frames.
+
+---
+
+### 3. Desktop Floating HUD (Gaming & Benchmarking Mode)
+
+A translucent, movable desktop companion that floats above games, full-screen video, and benchmarking runs:
+
+```
+┌────────────────────────────────────────────────────────┐
+│  PULSE HUD // LIVE DESKTOP TELEMETRY COMPANION         │
+├────────────────────────────────────────────────────────┤
+│  CPU:   18%   │  3.40 GHz  │  58°C                     │
+│  RAM:   64%   │  10.2 GB / 16.0 GB                     │
+│  GPU:   24%   │  55°C      │  1850 MHz  │  8.58 GB     │
+│  NET:   ↓ 14.2 MB/s        │  ↑ 1.8 MB/s               │
+└────────────────────────────────────────────────────────┘
+```
+
+- **Non-Invasive Architecture**: Compliant with BattlEye, Easy Anti-Cheat, and Riot Vanguard with zero memory hooks or DLL injections.
+- **Configurable Translucency**: Adjustable window opacity (30% to 100%) and draggable anywhere on multi-monitor setups.
+
+---
+
 ## 📦 Complete Module Architecture
 
 ### 1. Module 01: System Overview Dashboard
