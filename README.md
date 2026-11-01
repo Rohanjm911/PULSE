@@ -149,6 +149,12 @@ A translucent, movable desktop companion that floats above games, full-screen vi
 
 ## 📦 Complete Module Architecture
 
+### 0. Initial Onboarding: First-Run Hardware Discovery & Baseline Calibration
+- **Automated Hardware Profiling**: Runs on initial application launch across 6 discrete phases (CPU, GPU, RAM, Storage, Network, and Baseline Health).
+- **Subsystem Verification**: Validates hardware counters, verifies dedicated NVIDIA GDDR6 VRAM, queries base clock speeds, and establishes initial baseline health.
+- **Persistent Calibration**: Saves state locally in `localStorage` (`pulse_first_scan_completed`) so subsequent runs boot instantly into the dashboard.
+- **On-Demand Re-Run**: Easily re-triggered anytime from the Diagnostics page via the dedicated "Re-Run System Scan" button.
+
 ### 1. Module 01: System Overview Dashboard
 - **Health Score Algorithm**: Aggregates CPU load, memory pressure, thermal readings, and storage capacity into a dynamic 0–100 score (`Optimal`, `Good`, `Warning`, `Critical`).
 - **Core Telemetry Cards**: 6 metric cards for CPU, RAM, GPU, Primary Disk, Network, and Thermals.
