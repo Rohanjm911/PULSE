@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Pulse.gif" alt="PULSE - Live System Health Dashboard Animation" width="280" />
+  <img src="https://raw.githubusercontent.com/Rohanjm911/PULSE/main/Pulse.gif" alt="PULSE - Live System Health Dashboard Animation" width="280" />
 </p>
 
 <p align="center">
@@ -19,10 +19,6 @@
   <img src="https://img.shields.io/badge/Frontend-React%2019%20%2B%20TS-8585FF?style=for-the-badge&logo=react&logoColor=white" alt="Frontend" />
   <img src="https://img.shields.io/badge/GPU-NVIDIA%20GeForce%20RTX-76B900?style=for-the-badge&logo=nvidia&logoColor=white" alt="GPU" />
   <img src="https://img.shields.io/badge/Telemetry-100%25%20Real%20Hardware-FF5252?style=for-the-badge" alt="Telemetry" />
-</p>
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=00D4FF,8585FF,35D07F&height=80&section=header&animation=fadeIn" width="100%" alt="Cyber Wave" />
 </p>
 
 ---
@@ -87,7 +83,9 @@ PULSE features a technical, high-contrast dark visual identity built for clarity
 PULSE directly interrogates native hardware drivers to deliver instant, zero-mock performance analytics:
 
 <p align="center">
-  <img src="docs/screenshots/gpu_dashboard.png" alt="PULSE GPU Graphics & Hardware Telemetry Dashboard" width="100%" />
+  <a href="https://raw.githubusercontent.com/Rohanjm911/PULSE/main/docs/screenshots/gpu_dashboard.png" target="_blank">
+    <img src="https://raw.githubusercontent.com/Rohanjm911/PULSE/main/docs/screenshots/gpu_dashboard.png" alt="PULSE GPU Graphics & Hardware Telemetry Dashboard" width="100%" />
+  </a>
 </p>
 
 #### Functional UI Breakdown:
@@ -111,7 +109,9 @@ PULSE directly interrogates native hardware drivers to deliver instant, zero-moc
 The application boots through a cinematic, distraction-free startup sequence:
 
 <p align="center">
-  <img src="docs/screenshots/splash_screen.jpg" alt="PULSE High-Tech Animated Startup Splash Screen" width="85%" />
+  <a href="https://raw.githubusercontent.com/Rohanjm911/PULSE/main/docs/screenshots/splash_screen.jpg" target="_blank">
+    <img src="https://raw.githubusercontent.com/Rohanjm911/PULSE/main/docs/screenshots/splash_screen.jpg" alt="PULSE High-Tech Animated Startup Splash Screen" width="85%" />
+  </a>
 </p>
 
 #### Startup Engineering & Design Principles:
@@ -272,10 +272,6 @@ npm run tauri build -- --no-bundle
 ---
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=00D4FF,8585FF&height=70&section=footer" width="100%" alt="Footer Wave" />
-</p>
-
-<p align="center">
   <strong>PULSE — Complete System Utility & Diagnostics Suite</strong><br>
-  Designed for Windows 10 & Windows 11
+  <em>Designed for Windows 10 & Windows 11</em>
 </p>
