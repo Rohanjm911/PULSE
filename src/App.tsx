@@ -5,6 +5,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
 import { FloatingWidget } from "@/components/widgets/FloatingWidget";
 import { SplashScreen } from "@/components/common/SplashScreen";
+import { InitialSystemScan } from "@/components/onboarding/InitialSystemScan";
 
 import { OverviewPage } from "@/pages/Overview";
 import { PerformancePage } from "@/pages/Performance";
@@ -24,9 +25,26 @@ export default function App() {
   const { activeTab, startMonitoring, stopMonitoring, settings } =
     useSystemStore();
   const [showSplash, setShowSplash] = useState(true);
+  const [showFirstRunScan, setShowFirstRunScan] = useState(false);
 
   const handleSplashFinish = React.useCallback(() => {
     setShowSplash(false);
+    const hasCompletedFirstScan = localStorage.getItem(
+      "pulse_first_scan_completed"
+    );
+    if (!hasCompletedFirstScan) {
+      setShowFirstRunScan(true);
+    }
+  }, []);
+
+  const handleFirstScanComplete = React.useCallback(() => {
+    setShowFirstRunScan(false);
+  }, []);
+
+  useEffect(() => {
+    const handleReRun = () => setShowFirstRunScan(true);
+    window.addEventListener("pulse:rerun-scan", handleReRun);
+    return () => window.removeEventListener("pulse:rerun-scan", handleReRun);
   }, []);
 
   useEffect(() => {
@@ -121,6 +139,13 @@ export default function App() {
       {/* Startup Splash Screen with Smooth Transition */}
       <AnimatePresence>
         {showSplash && <SplashScreen onFinish={handleSplashFinish} />}
+      </AnimatePresence>
+
+      {/* First-Run Hardware Discovery & Baseline Calibration Scan */}
+      <AnimatePresence>
+        {showFirstRunScan && (
+          <InitialSystemScan onComplete={handleFirstScanComplete} />
+        )}
       </AnimatePresence>
     </div>
   );

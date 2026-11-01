@@ -12,6 +12,7 @@ import {
   Sparkles,
   Server,
   ShieldCheck,
+  RefreshCw,
 } from "lucide-react";
 import { useSystemStore } from "@/stores/useSystemStore";
 import { Card } from "@/components/common/Card";
@@ -220,17 +221,27 @@ export const DiagnosticsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5 shrink-0">
+        <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
+          <button
+            onClick={() =>
+              window.dispatchEvent(new CustomEvent("pulse:rerun-scan"))
+            }
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#181F29] hover:bg-[#202936] border border-[#293342] text-xs font-mono font-semibold text-[#00D4FF] transition-colors cursor-pointer"
+            title="Re-run Initial System Discovery & Calibration Scan"
+          >
+            <RefreshCw className="w-3.5 h-3.5" />
+            <span>Re-Run System Scan</span>
+          </button>
           <button
             onClick={exportCSV}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#181F29] hover:bg-[#202936] border border-[#293342] text-xs font-mono font-semibold text-[#F4F6F8] transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#181F29] hover:bg-[#202936] border border-[#293342] text-xs font-mono font-semibold text-[#F4F6F8] transition-colors cursor-pointer"
           >
             <Download className="w-3.5 h-3.5 text-[#00D4FF]" />
             <span>Export CSV</span>
           </button>
           <button
             onClick={exportPDF}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#00D4FF] hover:bg-[#00D4FF]/90 text-[#0D1015] text-xs font-mono font-bold shadow-xs transition-colors"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#00D4FF] hover:bg-[#00D4FF]/90 text-[#0D1015] text-xs font-mono font-bold shadow-xs transition-colors cursor-pointer"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>Export PDF Report</span>
